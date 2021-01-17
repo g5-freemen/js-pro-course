@@ -11,15 +11,11 @@ class Car {
         this.fuelСonsumption = fuelСonsumption;
     }
 
-    getFullName() {
-        return `${this.name} ${this.model}`;
-    }
+    getFullName = () => `${this.name} ${this.model}`;
 
-    getAge() {
-        return `${this.name} ${this.model} is ${new Date().getFullYear()-this.year} year(s) old.`;
-    }
+    getAge = () => `${this.name} ${this.model} is ${new Date().getFullYear()-this.year} year(s) old.`;
 
-    changeColor(color) {
+    changeColor = (color) => {
         if (color === this.color) return `Your car is already ${color}.`
         else {
             this.color = color;
@@ -27,7 +23,7 @@ class Car {
         }
     }
 
-    calculateWay(kilometers,fuel) {
+    calculateWay = (kilometers,fuel) => {
         if (fuel < 10) console.log(`Your have only ${fuel} litres of fuel.`);
         console.log(`Travel time will be ${(kilometers/this.maxSpeed).toFixed(1)} hours (at least).`);
         if (kilometers/100*this.fuelСonsumption > fuel) {
@@ -43,10 +39,7 @@ class OffroadCar extends Car {
         this.winch = winch;
     }
     awd = true;
-
-    checkWinch() {
-        return this.winch ? `${this.name} ${this.model} have a winch.` : `${this.name} ${this.model} have no winch.`
-    }
+    checkWinch = () => this.winch ? `${this.name} ${this.model} have a winch.` : `${this.name} ${this.model} have no winch.`
 };
 
 class SuperCar extends Car {
@@ -63,7 +56,6 @@ class BudgetCar extends Car {
         super(name, model, year, color, maxSpeed, fuelCapacity, fuelСonsumption);
     }
     cabinAirFreshener = true;
-
     checkFreshener = () => this.cabinAirFreshener ? `${this.name} ${this.model} is a budget car.` : `This is an expensive car.`
 };
 //#endregion 
