@@ -1,3 +1,5 @@
+'use strict';
+
 class Car {
     constructor(name, model, year, color, maxSpeed, fuelCapacity = 60, fuelСonsumption = 10) {
         this.name = name;
@@ -43,7 +45,7 @@ class OffroadCar extends Car {
     awd = true;
 
     checkWinch() {
-        return winch ? `${this.name} ${this.model} have a winch.` : `${this.name} ${this.model} have no winch.`
+        return this.winch ? `${this.name} ${this.model} have a winch.` : `${this.name} ${this.model} have no winch.`
     }
 };
 
@@ -53,10 +55,7 @@ class SuperCar extends Car {
         this.hp = hp;
     }
     carbonRoof = true;
-
-    showPower() {
-        return this.hp>500 && carbonRoof ? `${this.name} ${this.model} have a ${this.hp} hp.` : `It's a crap.`
-    }
+    showPower = () => this.hp>500 && this.carbonRoof ? `${this.name} ${this.model} have a ${this.hp} hp.` : `It's a crap.`
 };
 
 class BudgetCar extends Car {
@@ -65,9 +64,7 @@ class BudgetCar extends Car {
     }
     cabinAirFreshener = true;
 
-    checkFreshener() {
-        return cabinAirFreshener ? `${this.name} ${this.model} is a budget car.` : `This is an expensive car.`
-    }
+    checkFreshener = () => this.cabinAirFreshener ? `${this.name} ${this.model} is a budget car.` : `This is an expensive car.`
 };
 //#endregion 
 

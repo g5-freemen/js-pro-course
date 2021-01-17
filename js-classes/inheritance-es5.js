@@ -1,3 +1,5 @@
+'use strict';
+
 function Car(name, model, year, color, maxSpeed, fuelCapacity = 60, fuelСonsumption = 10) {
     this.name = name;
     this.model = model;
@@ -13,8 +15,7 @@ Car.prototype.getFullName = function() {
 }
 
 Car.prototype.getAge = function() {
-    let date = new Date();
-    return `${this.name} ${this.model} is ${date.getFullYear()-this.year} year(s) old.`;
+    return `${this.name} ${this.model} is ${new Date().getFullYear()-this.year} year(s) old.`;
 }
 
 Car.prototype.changeColor = function(color) {
@@ -42,27 +43,27 @@ function extend(Child, Parent) {
 
 function BudgetCar(name, model, year, color, maxSpeed, fuelCapacity, fuelСonsumption) {
     BudgetCar.superclass.constructor.call(this, name, model, year, color, maxSpeed, fuelCapacity, fuelСonsumption);
-    cabinAirFreshener = true;
+    this.cabinAirFreshener = true;
     this.checkFreshener = function () {
-        return cabinAirFreshener ? `${this.name} ${this.model} is a budget car.` : `This is an expensive car.`
+        return this.cabinAirFreshener ? `${this.name} ${this.model} is a budget car.` : `This is an expensive car.`
     }
 }
 
 function OffroadCar(name,model,year,color,maxSpeed,fuelCapacity=80,fuelСonsumption=15,winch=true) {
     OffroadCar.superclass.constructor.call(this,name,model,year,color,maxSpeed,fuelCapacity,fuelСonsumption);
     this.winch = winch;
-    awd = true;
+    this.awd = true;
     this.checkWinch = function () {
-        return winch ? `${this.name} ${this.model} have a winch.` : `${this.name} ${this.model} have no winch.`
+        return this.winch ? `${this.name} ${this.model} have a winch.` : `${this.name} ${this.model} have no winch.`
     }
 }
 
 function SuperCar(name, model, year, color, maxSpeed,fuelCapacity, fuelСonsumption, hp = 570) {
     SuperCar.superclass.constructor.call(this,name,model,year,color,maxSpeed,fuelCapacity,fuelСonsumption);
     this.hp = hp;
-    carbonRoof = true;
+    this.carbonRoof = true;
     this.showPower = function (hp) {
-        return this.hp>500 && carbonRoof ? `${this.name} ${this.model} have a ${this.hp} hp.` : `It's a crap.`
+        return this.hp>500 && this.carbonRoof ? `${this.name} ${this.model} have a ${this.hp} hp.` : `It's a crap.`
     }
 }
 
