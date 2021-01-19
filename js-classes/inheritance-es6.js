@@ -11,11 +11,15 @@ class Car {
         this.fuelСonsumption = fuelСonsumption;
     }
 
-    getFullName = () => `${this.name} ${this.model}`;
+    getFullName = function() {
+        return `${this.name} ${this.model}`
+    }
 
-    getAge = () => `${this.name} ${this.model} is ${new Date().getFullYear()-this.year} year(s) old.`;
+    getAge = function() {
+        return `${this.name} ${this.model} is ${new Date().getFullYear()-this.year} year(s) old.`
+    }
 
-    changeColor = (color) => {
+    changeColor = function(color) {
         if (color === this.color) return `Your car is already ${color}.`
         else {
             this.color = color;
@@ -23,7 +27,7 @@ class Car {
         }
     }
 
-    calculateWay = (kilometers,fuel) => {
+    calculateWay = function(kilometers,fuel) {
         if (fuel < 10) console.log(`Your have only ${fuel} litres of fuel.`);
         console.log(`Travel time will be ${(kilometers/this.maxSpeed).toFixed(1)} hours (at least).`);
         if (kilometers/100*this.fuelСonsumption > fuel) {
@@ -39,7 +43,9 @@ class OffroadCar extends Car {
         this.winch = winch;
     }
     awd = true;
-    checkWinch = () => this.winch ? `${this.name} ${this.model} have a winch.` : `${this.name} ${this.model} have no winch.`
+    checkWinch = function() {
+        return this.winch ? `${this.name} ${this.model} have a winch.` : `${this.name} ${this.model} have no winch.`
+    }
 };
 
 class SuperCar extends Car {
@@ -48,7 +54,9 @@ class SuperCar extends Car {
         this.hp = hp;
     }
     carbonRoof = true;
-    showPower = () => this.hp>500 && this.carbonRoof ? `${this.name} ${this.model} have a ${this.hp} hp.` : `It's a crap.`
+    showPower = function() {
+        return this.hp>500 && this.carbonRoof ? `${this.name} ${this.model} have a ${this.hp} hp.` : `It's a crap.`
+    }
 };
 
 class BudgetCar extends Car {
@@ -56,7 +64,9 @@ class BudgetCar extends Car {
         super(name, model, year, color, maxSpeed, fuelCapacity, fuelСonsumption);
     }
     cabinAirFreshener = true;
-    checkFreshener = () => this.cabinAirFreshener ? `${this.name} ${this.model} is a budget car.` : `This is an expensive car.`
+    checkFreshener = function() {
+        return this.cabinAirFreshener ? `${this.name} ${this.model} is a budget car.` : `This is an expensive car.`
+    }
 };
 //#endregion 
 

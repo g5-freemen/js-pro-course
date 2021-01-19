@@ -44,32 +44,35 @@ function extend(Child, Parent) {
 function BudgetCar(name, model, year, color, maxSpeed, fuelCapacity, fuelСonsumption) {
     BudgetCar.superclass.constructor.call(this, name, model, year, color, maxSpeed, fuelCapacity, fuelСonsumption);
     this.cabinAirFreshener = true;
-    this.checkFreshener = function () {
-        return this.cabinAirFreshener ? `${this.name} ${this.model} is a budget car.` : `This is an expensive car.`
-    }
+};
+extend(BudgetCar, Car);
+
+BudgetCar.prototype.checkFreshener = function () {
+    return this.cabinAirFreshener ? `${this.name} ${this.model} is a budget car.` : `This is an expensive car.`
 }
 
 function OffroadCar(name,model,year,color,maxSpeed,fuelCapacity=80,fuelСonsumption=15,winch=true) {
     OffroadCar.superclass.constructor.call(this,name,model,year,color,maxSpeed,fuelCapacity,fuelСonsumption);
     this.winch = winch;
     this.awd = true;
-    this.checkWinch = function () {
-        return this.winch ? `${this.name} ${this.model} have a winch.` : `${this.name} ${this.model} have no winch.`
-    }
+};
+extend(OffroadCar, Car);
+
+OffroadCar.prototype.checkWinch = function () {
+    return this.winch ? `${this.name} ${this.model} have a winch.` : `${this.name} ${this.model} have no winch.`
 }
 
 function SuperCar(name, model, year, color, maxSpeed,fuelCapacity, fuelСonsumption, hp = 570) {
     SuperCar.superclass.constructor.call(this,name,model,year,color,maxSpeed,fuelCapacity,fuelСonsumption);
     this.hp = hp;
     this.carbonRoof = true;
-    this.showPower = function (hp) {
-        return this.hp>500 && this.carbonRoof ? `${this.name} ${this.model} have a ${this.hp} hp.` : `It's a crap.`
-    }
+};
+extend(SuperCar, Car);
+
+SuperCar.prototype.showPower = function (hp) {
+    return this.hp>500 && this.carbonRoof ? `${this.name} ${this.model} have a ${this.hp} hp.` : `It's a crap.`
 }
 
-extend(BudgetCar, Car);
-extend(OffroadCar, Car);
-extend(SuperCar, Car);
 //#endregion 
 
 let polo = new BudgetCar('VW','Polo',2020,'gray',184,55,6.4),
