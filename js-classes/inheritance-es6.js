@@ -28,11 +28,13 @@ class Car {
     }
 
     calculateWay = function(kilometers,fuel) {
-        if (fuel < 10) console.log(`Your have only ${fuel} litres of fuel.`);
-        console.log(`Travel time will be ${(kilometers/this.maxSpeed).toFixed(1)} hours (at least).`);
+        let result = [];
+        if (fuel < 10) result.push(`Your have only ${fuel} litres of fuel.`);
+        result.push(`Travel time will be ${(kilometers/this.maxSpeed).toFixed(1)} hours (at least).`);
         if (kilometers/100*this.fuelСonsumption > fuel) {
-            console.log(`Your need to fill up ${(kilometers/100*this.fuelСonsumption - fuel)} litres of fuel.`)
+            result.push(`Your need to fill up ${(kilometers/100*this.fuelСonsumption - fuel)} litres of fuel.`)
         }
+        return result.join('\n')
     }
 }
 
@@ -78,18 +80,18 @@ let polo = new BudgetCar('VW','Polo',2020,'gray',184,55,6.4),
 console.log(polo.getFullName());
 console.log(polo.getAge());
 console.log(polo.changeColor('green'));
-polo.calculateWay(500,11);
+console.log(polo.calculateWay(500,11));
 console.log(polo.checkFreshener());
 
 console.log(f458.getFullName());
 console.log(f458.getAge());
 console.log(f458.changeColor('green'));
-f458.calculateWay(500,9);
+console.log(f458.calculateWay(500,9));
 console.log(f458.showPower());
 
 console.log(duster.getFullName());
 console.log(duster.getAge());
 console.log(duster.changeColor('green'));
-duster.calculateWay(500,11);
+console.log(duster.calculateWay(500,11));
 console.log(duster.checkWinch());
 //#endregion 
