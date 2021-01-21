@@ -7,19 +7,19 @@ describe('Cars functions tests', function() {
 
     it('polo.calculateWay(500,11) return string', function() {
         let result = polo.calculateWay(500,11);
-        assert.isNotString(result, `Return not string - ${result}`)
+        assert.isString(result, `Return non string`)
     } );
 
     it('polo.calculateWay(500,11) return not empty string', function() {
         let result = polo.calculateWay(500,11);
-        assert.isEmpty(result, 'Returns empty string')
+        assert.isNotEmpty(result, 'Returns empty string')
     } );
 
     it('polo.calculateWay(500,11) return Not NaN,null,undefined values', function() {
         let result = polo.calculateWay(500,11);
-        assert.include(result, 'NaN', 'Return NaN value');
-        assert.include(result, 'null', 'Return null value');
-        assert.include(result, 'undefined', 'Return undefined value')
+        assert.notInclude(result, 'NaN', 'Return include NaN values');
+        assert.notInclude(result, 'null', 'Return include null values');
+        assert.notInclude(result, 'undefined', 'Return include undefined values')
     } );
 
     it('polo.calculateWay(500,11) return positive values', function() {
@@ -29,7 +29,7 @@ describe('Cars functions tests', function() {
         for (let i of resultValues) {
             if (i == +i) {
                 console.log(i)
-                assert.isBelow(+i, 0, `Return ${+i} negative value`);
+                assert.isAtLeast(+i, 0, `Return ${+i} negative value`);
             }
         }
     } );
