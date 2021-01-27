@@ -72,7 +72,8 @@
         this.format = function (callback) {
             return callback(this.result)
         }
+    }
+    
+    window.My_Math = My_Math;
 
-        window.My_Math = My_Math;
-
-} } )(window);
+} )(window);
