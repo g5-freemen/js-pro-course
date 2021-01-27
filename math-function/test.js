@@ -1,5 +1,7 @@
 // Write test for My_Math here
 
+var assert = chai.assert;
+
 describe('Math function', () => {
     it('should perform basic math operations', () => {
         const result = My_Math(5)

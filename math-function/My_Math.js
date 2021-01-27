@@ -55,13 +55,15 @@
             return this;
         }
     
-        this.factorial = function (value) {
-            this.result = 1;
-            if (value >= 2) {
-                for (var i = 2; i <= value; i++) {
-                    this.result *= i;
+        this.factorial = function () {
+
+            let total = 1;
+            if (this.result >= 2) {
+                for (let i = 2; i <= this.result; i++) {
+                    total *= i;
                 }
             }
+            this.result = total;
             return this;
         }
     
