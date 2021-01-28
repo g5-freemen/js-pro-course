@@ -19,10 +19,11 @@
 
 ;(function (window) {
     function My_Math(initValue) {
-        if (!(this instanceof My_Math)) {
+        // if (!(this instanceof My_Math)) { //ES5
+        if (!new.target) { //ES6
             return new My_Math(initValue);
         }
-        this.result = initValue;
+        this.result = initValue || 0;
     
         this.plus = function (value) {
             this.result+=value;
