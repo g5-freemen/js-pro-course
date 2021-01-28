@@ -17,7 +17,7 @@
     chain can get initial value (check usage example in script.js)
 */
 
-;(function (window) {
+;(function (global) {
     function My_Math(initValue) {
         // if (!(this instanceof My_Math)) { //ES5
         if (!new.target) { //ES6
@@ -79,6 +79,6 @@
         }
     }
     
-    window.My_Math = My_Math;
+    global.My_Math = My_Math;
 
 } )(window);
