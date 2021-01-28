@@ -56,8 +56,10 @@
         }
     
         this.factorial = function () {
-
             let total = 1;
+            if (this.result<0) this.result=-this.result;
+            if (this.result.toFixed()!=this.result) this.result=this.result.toFixed();
+
             if (this.result >= 2) {
                 for (let i = 2; i <= this.result; i++) {
                     total *= i;
