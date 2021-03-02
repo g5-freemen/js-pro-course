@@ -1,12 +1,15 @@
 import './App.css';
-import React, { useState } from 'react'
-import Books from './components/Books.js'
+import React, { useState } from 'react';
+import Context from './Context.js';
+import Books from './components/Books.js';
+import AddBook from './components/AddBook.js';
+import uuid from 'react-uuid';
 
 export default function App() {
   let [ books, setBooks ] = useState( [
-    { id: 0, author: 'J.R.R. Tolkien', title: 'The Lord of the Rings', crossedOut: false },
-    { id: 1, author: 'Willian Golding', title: 'The Lord of the Flies', crossedOut: false },
-    { id: 2, author: 'Eugeny Zamyatin', title: 'We', crossedOut: false },
+    { id: uuid(), author: 'J.R.R. Tolkien', title: 'The Lord of the Rings', crossedOut: false },
+    { id: uuid(), author: 'Willian Golding', title: 'The Lord of the Flies', crossedOut: false },
+    { id: uuid(), author: 'Eugeny Zamyatin', title: 'We', crossedOut: false },
     ] );
   
   let [ showAuthor, setShowAuthor ] = useState(true);
@@ -18,12 +21,19 @@ export default function App() {
     } ) )
   }
 
+  const deleteBook = (id) => setBooks( books.filter( item => item.id !== id ) );
+
+  const addBook = (title,author) => setBooks( books.concat( { id: uuid(), author, title, crossedOut: false } ) )
+
   return (
-    <div className="App">
-      <button className='author-toggle' onClick={ () => setShowAuthor(!showAuthor) }>
-        { showAuthor ? "Hide authors" : "Show authors" }
-      </button>
-      <Books books={books} showAuthor={showAuthor} onChange={crossBook} />
-    </div>
+    <Context.Provider value={{ books, deleteBook, crossBook } }>
+      <div className="App">
+        <button className='author-toggle' onClick={ () => setShowAuthor(!showAuthor) }>
+          { showAuthor ? "Hide authors" : "Show authors" }
+        </button>
+        <Books showAuthor={showAuthor} />
+        <AddBook onAddBook={addBook} />
+      </div>
+    </Context.Provider>
   );
 }
