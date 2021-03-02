@@ -2,10 +2,11 @@ import './App.css';
 import React, { useState } from 'react';
 import Context from './Context.js';
 import Books from './components/Books.js';
-import AddBook from './components/AddBook.js';
 import uuid from 'react-uuid';
 
 export default function App() {
+  const AddBook = React.lazy(()=> import('./components/AddBook.js'));
+
   let [ books, setBooks ] = useState( [
     { id: uuid(), author: 'J.R.R. Tolkien', title: 'The Lord of the Rings', crossedOut: false },
     { id: uuid(), author: 'Willian Golding', title: 'The Lord of the Flies', crossedOut: false },
@@ -32,7 +33,9 @@ export default function App() {
           { showAuthor ? "Hide authors" : "Show authors" }
         </button>
         <Books showAuthor={showAuthor} />
-        <AddBook onAddBook={addBook} />
+        <React.Suspense fallback={'AddBook loading...'}>
+          <AddBook onAddBook={addBook} />
+        </React.Suspense>
       </div>
     </Context.Provider>
   );
