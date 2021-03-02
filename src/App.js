@@ -28,7 +28,7 @@ export default function App() {
   return (
     <Context.Provider value={{ books, deleteBook, crossBook } }>
       <div className="App">
-        <button className='author-toggle' onClick={ () => setShowAuthor(!showAuthor) }>
+        <button className='author-toggle' onClick={ setShowAuthor.bind(null,!showAuthor) }>
           { showAuthor ? "Hide authors" : "Show authors" }
         </button>
         <Books showAuthor={showAuthor} />
