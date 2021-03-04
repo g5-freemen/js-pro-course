@@ -1,31 +1,54 @@
 import './App.css';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Context from './context'
 import InputRub from './components/InputRub';
 
+export const AppContent = React.createContext()
+
 export default function App() {
+  const [ currencies, setCurrencies ] = useState([]);
 
   function setCurDate() {
     localStorage.setItem('currenciesDate',new Date().getDate());
   }
+
+  async function fetchCurrencies () {
+    let result = await fetch('https://www.nbrb.by/api/exrates/rates?periodicity=0').then(res => res.json());
+    setCurrencies(result);
+    localStorage.setItem('currencies', JSON.stringify(result));
+
+    // set date to localstorage
+  }
   
-  function getCurrencies() {
-          fetch('https://www.nbrb.by/api/exrates/rates?periodicity=0')
-            .then(res => res.json())
-            .then(currs => localStorage.setItem('currencies', JSON.stringify(currs)));
-          return currencies = JSON.parse(localStorage.getItem('currencies'))
+  async function getCurrencies() {
+    const cachedCurrencies = localStorage.getItem('currencies');
+    const lastFetchDate = +localStorage.getItem('currenciesDate');
+
+    try {
+      debugger;
+      if (cachedCurrencies ) {
+        // || lastFetchDate !== +new Date().getDate()
+        const c = JSON.parse(cachedCurrencies);
+        setCurrencies(c);
+      } else {
+        fetchCurrencies()
+      }
+    } catch (e) {
+      console.log('Cannot set currencies');
+    }
   }
 
-  if (+localStorage.getItem('currenciesDate') !== +(new Date().getDate())) {
-    localStorage.removeItem('currencies');
+  useEffect(()=> {
+    console.log('dadas')
     getCurrencies();
-    setTimeout(() => { setCurDate() }, 999);
-  }
+  }, [] );
 
-  let currencies = JSON.parse(localStorage.getItem('currencies'))
+
+  // let currencies = JSON.parse(localStorage.getItem('currencies'));
+  console.log( currencies )
 
 return (
-  <Context.Provider value={ currencies || getCurrencies }>
+  <Context.Provider value={ currencies }>
     <div className="App">
       <h1>Currency Converter</h1>
       <InputRub valueBYN={0} />
@@ -33,3 +56,7 @@ return (
   </Context.Provider>
   )
 }
+
+<currC>
+  <App/>
+</currC>

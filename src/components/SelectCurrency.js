@@ -1,16 +1,22 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import uuid from 'react-uuid';
 import Context from '../context';
 
 export default function SelectCurrency(props) {
     let currencies = useContext(Context);
     const { onChooseCurr } = props;
-    const [ curr, setCurr ] = useState(currencies[0].Cur_Abbreviation)
+    const [ curr, setCurr ] = useState('');
 
     function onCurrChange(ev) {
         setCurr(ev.target.value);
         onChooseCurr(ev.target.value);
     }
+
+    useEffect(() => {
+        if (currencies && currencies.length) {
+            setCurr(currencies[0].Cur_Abbreviation);
+        }
+    }, [currencies]);
 
     return (
         <select value={curr} id="selectCurrency" onChange={onCurrChange} style={{outline:'none'}}>

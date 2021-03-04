@@ -5,7 +5,8 @@ export default function InputRub(props) {
     const [valueBYN, setBYN] = useState(+props.valueBYN);
 
     const onBYNChange = (ev) => {
-        if (ev.target.value != +ev.target.value) return;
+        if (ev.target.value === '') setBYN(0);
+        if (!Number(+ev.target.value)) return;
         setBYN(+ev.target.value);
     };
 
