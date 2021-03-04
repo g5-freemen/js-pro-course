@@ -26,6 +26,9 @@ h1 {
   justify-content: flex-start;
 }
 
-.input-field {
+input {
   margin-top: 1rem;
+  outline: none;
+
 }
+

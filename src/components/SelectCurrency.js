@@ -12,14 +12,13 @@ export default function SelectCurrency(props) {
         onChooseCurr(ev.target.value);
     }
 
-return (
-    <select value={curr} id="selectCurrency" onChange={onCurrChange}>
-    { currencies.map(item => 
-        item.Cur_ID !== 299 ?
-        <option key={uuid()} value={item.Cur_Abbreviation} >
-            {item.Cur_Name}
-        </option> : null ) }
-    </select>
-)
-
+    return (
+        <select value={curr} id="selectCurrency" onChange={onCurrChange} style={{outline:'none'}}>
+        { currencies.map(item => 
+            item.Cur_ID !== 299 ?
+            <option key={uuid()} value={item.Cur_Abbreviation} >
+                {item.Cur_Name}
+            </option> : null ) }
+        </select>
+    )
 }
