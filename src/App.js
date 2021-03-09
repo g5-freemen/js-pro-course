@@ -25,11 +25,13 @@ export default function App() {
     const lastFetchDate = +localStorage.getItem('currenciesDate');
 
     try {
-      debugger;
       if (cachedCurrencies ) {
         // || lastFetchDate !== +new Date().getDate()
         const c = JSON.parse(cachedCurrencies);
-        setCurrencies(c);
+        console.log('c=',c);
+        console.log('currencies=',currencies);
+        setCurrencies(cachedCurrencies);
+        console.log('currencies=',currencies);
       } else {
         fetchCurrencies()
       }
