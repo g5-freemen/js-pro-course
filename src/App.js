@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 import Context from './Context.js';
-import Books from './components/Books.js'
+import Books from './components/Books.js';
 import AddBook from './components/AddBook.js';
 import uuid from 'react-uuid';
 
@@ -16,7 +16,7 @@ export default function App() {
 
   function crossBook(id) {
     setBooks( books.map( item => {
-        if (item.id === id) item.crossedOut = !item.crossedOut;
+        item.id === id && (item.crossedOut = !item.crossedOut);
         return item;
     } ) )
   }
