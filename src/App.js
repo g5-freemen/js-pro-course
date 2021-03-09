@@ -13,6 +13,7 @@ export default function App() {
   }
 
   async function fetchCurrencies () {
+    console.log('fetch');
     let result = await fetch('https://www.nbrb.by/api/exrates/rates?periodicity=0').then(res => res.json());
     setCurrencies(result);
     localStorage.setItem('currencies', JSON.stringify(result));
@@ -28,9 +29,10 @@ export default function App() {
       if (cachedCurrencies ) {
         // || lastFetchDate !== +new Date().getDate()
         const c = JSON.parse(cachedCurrencies);
+        
         console.log('c=',c);
         console.log('currencies=',currencies);
-        setCurrencies(cachedCurrencies);
+        setCurrencies(c);
         console.log('currencies=',currencies);
       } else {
         fetchCurrencies()
@@ -41,13 +43,13 @@ export default function App() {
   }
 
   useEffect(()=> {
-    console.log('dadas')
+    console.log('useEffect+getCurrencies')
     getCurrencies();
   }, [] );
 
 
   // let currencies = JSON.parse(localStorage.getItem('currencies'));
-  console.log( currencies )
+  console.log( 'end=>>',currencies )
 
 return (
   <Context.Provider value={ currencies }>
@@ -58,7 +60,3 @@ return (
   </Context.Provider>
   )
 }
-
-<currC>
-  <App/>
-</currC>
