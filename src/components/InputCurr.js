@@ -1,37 +1,41 @@
-import React, {useState, useEffect, useContext} from 'react';
+import {useState, useEffect} from 'react';
 import SelectCurrency from './SelectCurrency';
-import Context from '../context';
 
 export default function InputCurr(props) {
-    const { valueBYN, onInputCurr } = props;
-    const currencies = useContext(Context);
+    const { valueBYN } = props;
     const [ valueCurr, setValCurr ] = useState(valueBYN);
-    const [ currency, setCurr ] = useState(currencies[0]);
+    const { currencies } = props.currencies;
+    const [ currency, setCurr ] = useState([]);
 
-    const onChangeCurr = (ev) => {
-        if (!+ev.target.value) return;
-        setValCurr(+ev.target.value);
-        onInputCurr(+ev.target.value);
-    };
-
-    const onChooseCurr = (val) => {
-        console.log('val=',val);
-        setCurr( currencies.filter(item => item.Cur_Abbreviation===val)[0] );
+    function onChooseCurr(choosenCur) {
+        setCurr( currencies.find(item => item.Cur_Abbreviation === choosenCur) );
         calcCurrency(valueBYN);
     }
 
-    const calcCurrency = (val) => setValCurr((val / currency.Cur_OfficialRate * currency.Cur_Scale).toFixed(2));
+    function calcCurrency (val) {
+        if (!currency.Cur_OfficialRate) return;
+        setValCurr((val / currency.Cur_OfficialRate * currency.Cur_Scale).toFixed(2));
+    }
 
-    useEffect( ()=> { calcCurrency( valueBYN ) }, [valueBYN, currency] );
+    useEffect( ()=> {
+        calcCurrency( valueBYN )
+    }, [valueBYN, currency] );
+
+    
+    useEffect( ()=> {
+        setCurr(currencies[0] || [])
+    }, [currencies] );
+
 
     return (
         <span className='input-field'>
             <input value={ valueCurr }
-                   onChange={onChangeCurr}
-                   style={{color: 'red', fontWeight: 'bold' }}
+                   style={{ color: 'red',
+                            fontWeight: 'bold'
+                         }}
                    disabled
             />
-        &nbsp;<SelectCurrency onChooseCurr={onChooseCurr}/>
+        <SelectCurrency onChooseCurr={onChooseCurr} currencies={currencies}/>
         </span>
     )
 }
