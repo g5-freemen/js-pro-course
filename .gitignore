@@ -2,3 +2,4 @@
 .DS_store
 node-modules
 .cache
+node_modules
