@@ -11,7 +11,7 @@ export default function SelectCurrency(props) {
     }
 
     return (
-        <select value={curr} id="selectCurrency" onChange={onCurrChange} style={{outline:'none'}}>
+        <select value={curr} id="selectCurrency" onChange={onCurrChange}>
         { currencies && currencies.map(item => 
             item.Cur_ID !== 299 &&
             <option key={uuid()} value={item.Cur_Abbreviation} >

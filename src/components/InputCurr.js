@@ -17,15 +17,9 @@ export default function InputCurr(props) {
         setValCurr((val / currency.Cur_OfficialRate * currency.Cur_Scale).toFixed(2));
     }
 
-    useEffect( ()=> {
-        calcCurrency( valueBYN )
-    }, [valueBYN, currency] );
+    useEffect( ()=> calcCurrency( valueBYN ), [valueBYN, currency] );
 
-    
-    useEffect( ()=> {
-        setCurr(currencies[0] || [])
-    }, [currencies] );
-
+    useEffect( ()=> setCurr(currencies[0] || []), [currencies] );
 
     return (
         <span className='input-field'>
