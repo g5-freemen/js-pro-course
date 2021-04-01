@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import InputCurr from './InputCurr';
 
 export default function InputRub(props) {
@@ -13,11 +13,12 @@ export default function InputRub(props) {
     };
 
     return (
-        <div className='container'>
+        <React.Fragment>
             <span className='input-field'>
-            <input value={valueBYN} onChange={onBYNChange}/>
-            &nbsp;BYN</span>
+                <input value={valueBYN} onChange={onBYNChange}/>
+                <span className='input-title'>BYN</span>
+            </span>
             <InputCurr valueBYN={valueBYN} currencies={currencies}/>
-        </div>
+        </React.Fragment>
     )
 }

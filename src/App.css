@@ -3,6 +3,18 @@ body {
 }
 
 .App {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(#06beb6 , #48b1bf)
+}
+
+.container {
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -12,8 +24,13 @@ body {
   font-size: 12px;
 }
 
-h1 {
-  margin: 1rem 0 0 1rem;
+h1, 
+.input-title {
+  margin: 1rem auto .5rem;
+  font-size: 2rem;
+  color: rgba(0,0,0,0.6);
+  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+                   0px -5px 35px rgba(255,255,255,0.3);
 }
 
 .container {
@@ -34,6 +51,11 @@ input {
 .input-field {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
+}
+
+.input-title {
+  margin-left: .5rem;
+  font-size: 1rem;
 }
 
 #selectCurrency {

@@ -15,8 +15,10 @@ export default function App() {
 
   return (
       <div className="App">
-        <h1>Currency Converter</h1>
-        <InputRub valueBYN={0} currencies={{currencies}} />
+        <div className="container">
+          <h1>Currency Converter</h1>
+          <InputRub valueBYN={0} currencies={{currencies}} />
+        </div>
       </div>
   )
 }
