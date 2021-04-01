@@ -19,6 +19,12 @@ export default function App() {
           <h1>Currency Converter</h1>
           <InputRub valueBYN={0} currencies={{currencies}} />
         </div>
+        
+        <footer className="footer">
+            <a className="footer__link" href="https://github.com/g5-freemen">
+                    Made by Anton Borkovskij, 2021
+            </a>
+        </footer>
       </div>
   )
 }
